@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verdora Botanicals — Skincare, Slowed Down</title>
+<meta name="description" content="Verdora Botanicals: slow-made, plant-derived skincare rituals. Cleansers, serums, and balms formulated for quiet, visible results.">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400&family=Sora:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<!-- AOS -->
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css">
+
+<!-- Swiper -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
+<style>
+  :root{
+    --ivory:#FBF8F2;
+    --ivory-deep:#F4EEE3;
+    --sage:#8FA184;
+    --sage-deep:#5C6E52;
+    --forest:#37402F;
+    --blush:#EFD7CE;
+    --blush-deep:#E3B9AE;
+    --line:rgba(55,64,47,0.14);
+    --shadow: 0 20px 50px -20px rgba(55,64,47,0.25);
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--forest);
+    font-family:'Sora', sans-serif;
+    font-weight:400;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:-0.01em;
+    margin:0;
+  }
+  .eyebrow{
+    font-family:'Sora',sans-serif;
+    font-size:0.72rem;
+    letter-spacing:0.22em;
+    text-transform:uppercase;
+    color:var(--sage-deep);
+    font-weight:600;
+  }
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none; margin:0; padding:0;}
+  button{font-family:inherit; cursor:pointer;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 6vw;}
+  ::selection{background:var(--blush-deep); color:var(--forest);}
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; scroll-behavior:auto !important;}
+  }
+
+  :focus-visible{
+    outline:2px solid var(--sage-deep);
+    outline-offset:3px;
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:fixed; top:0; left:0; right:0; z-index:1000;
+    padding:22px 0;
+    transition:all 400ms ease;
+    background:transparent;
+  }
+  header.scrolled{
+    padding:14px 0;
+    background:rgba(251,248,242,0.86);
+    backdrop-filter:blur(14px);
+    box-shadow:0 1px 0 var(--line);
+  }
+  nav{display:flex; align-items:center; justify-content:space-between;}
+  .logo{
+    font-family:'Fraunces', serif;
+    font-size:1.35rem;
+    font-weight:500;
+    display:flex; align-items:center; gap:8px;
+  }
+  .logo .dot{width:7px; height:7px; border-radius:50%; background:var(--blush-deep); display:inline-block;}
+  .nav-links{display:flex; gap:2.4rem; align-items:center;}
+  .nav-links a{
+    font-size:0.86rem; font-weight:500; position:relative; padding:4px 0;
+    color:var(--forest); opacity:0.82;
+    transition:opacity 250ms ease;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:-2px; width:0; height:1px; background:var(--sage-deep);
+    transition:width 300ms ease;
+  }
+  .nav-links a:hover{opacity:1;}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    background:var(--forest); color:var(--ivory) !important;
+    padding:10px 22px; border-radius:999px; font-size:0.82rem !important;
+    opacity:1 !important;
+  }
+  .nav-cta::after{display:none;}
+  .burger{display:none; background:none; border:none; font-size:1.4rem; color:var(--forest);}
+
+  @media(max-width:900px){
+    .nav-links{
+      position:fixed; inset:0 0 0 auto; width:78%; max-width:340px;
+      background:var(--ivory); flex-direction:column; align-items:flex-start;
+      padding:100px 2rem 2rem; gap:1.6rem; transform:translateX(100%);
+      transition:transform 400ms ease; box-shadow:var(--shadow);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .burger{display:block; z-index:1001;}
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative; min-height:100vh; display:flex; align-items:center;
+    padding-top:110px; overflow:hidden;
+    background:
+      radial-gradient(60% 50% at 82% 18%, rgba(239,215,206,0.55), transparent 70%),
+      radial-gradient(45% 40% at 10% 85%, rgba(143,161,132,0.28), transparent 70%),
+      var(--ivory);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.05fr 0.95fr; gap:4vw; align-items:center; width:100%;
+  }
+  .hero h1{
+    font-size:clamp(2.6rem, 5.4vw, 4.6rem);
+    line-height:1.02;
+    margin:18px 0 26px;
+  }
+  .hero h1 em{font-style:italic; color:var(--sage-deep);}
+  .hero p.lead{
+    font-size:1.08rem; line-height:1.7; max-width:460px; opacity:0.82; margin-bottom:2.2rem;
+  }
+  .btn-row{display:flex; gap:1rem; flex-wrap:wrap;}
+  .btn{
+    position:relative; overflow:hidden; padding:15px 32px; border-radius:999px;
+    font-size:0.88rem; font-weight:600; border:1px solid transparent; display:inline-flex; align-items:center; gap:8px;
+    transition:transform 300ms ease, box-shadow 300ms ease;
+  }
+  .btn-primary{background:var(--forest); color:var(--ivory);}
+  .btn-primary:hover{transform:translateY(-3px); box-shadow:0 14px 30px -10px rgba(55,64,47,0.45);}
+  .btn-outline{border-color:var(--forest); color:var(--forest);}
+  .btn-outline:hover{background:var(--forest); color:var(--ivory); transform:translateY(-3px);}
+  .btn .ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,0.5); transform:scale(0);
+    animation:ripple 650ms ease-out;
+  }
+  @keyframes ripple{to{transform:scale(3); opacity:0;}}
+
+  .hero-visual{position:relative; height:560px;}
+  .hero-blob{
+    position:absolute; inset:6% 8%; border-radius:44% 56% 62% 38% / 48% 42% 58% 52%;
+    background:linear-gradient(160deg, var(--blush) 0%, var(--sage) 130%);
+    animation:float 7s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{transform:translateY(0) rotate(0deg);}
+    50%{transform:translateY(-18px) rotate(3deg);}
+  }
+  .hero-bottle{
+    position:absolute; left:50%; top:52%; transform:translate(-50%,-50%);
+    width:52%; filter:drop-shadow(0 30px 40px rgba(55,64,47,0.35));
+    animation:float2 6s ease-in-out infinite;
+  }
+  @keyframes float2{
+    0%,100%{transform:translate(-50%,-50%) translateY(0);}
+    50%{transform:translate(-50%,-50%) translateY(-14px);}
+  }
+  .drip{
+    position:absolute; width:10px; height:10px; border-radius:50% 50% 50% 0;
+    background:var(--sage-deep); opacity:0; transform:rotate(45deg);
+    animation:drip 3.4s ease-in infinite;
+  }
+  @keyframes drip{
+    0%{opacity:0; top:30%;}
+    10%{opacity:0.9;}
+    75%{opacity:0.5;}
+    100%{top:78%; opacity:0;}
+  }
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%);
+    font-size:0.7rem; letter-spacing:0.18em; text-transform:uppercase; opacity:0.6;
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+  }
+  .scroll-cue .line{width:1px; height:34px; background:var(--forest); opacity:0.4; overflow:hidden; position:relative;}
+  .scroll-cue .line::after{
+    content:''; position:absolute; top:-100%; left:0; width:100%; height:100%; background:var(--forest);
+    animation:scrollline 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollline{50%{top:100%;} 100%{top:100%;}}
+
+  @media(max-width:900px){
+    .hero-grid{grid-template-columns:1fr; text-align:left;}
+    .hero-visual{height:380px; order:-1;}
+  }
+
+  /* ---------- SECTION shells ---------- */
+  section{padding:8.5rem 0; position:relative;}
+  .section-head{max-width:640px; margin-bottom:3.6rem;}
+  .section-head h2{font-size:clamp(2rem,3.6vw,2.9rem); margin-top:12px; line-height:1.12;}
+  .section-head p{opacity:0.75; line-height:1.7; margin-top:16px; font-size:1.02rem;}
+  .center{text-align:center; margin-left:auto; margin-right:auto;}
+
+  /* ---------- ABOUT ---------- */
+  #about{background:var(--ivory-deep);}
+  .about-grid{display:grid; grid-template-columns:0.9fr 1.1fr; gap:5vw; align-items:center;}
+  .about-frame{
+    position:relative; border-radius:28px; overflow:hidden; aspect-ratio:4/5;
+    background:linear-gradient(150deg,var(--sage) 0%, var(--blush) 100%);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .about-frame i{font-size:5.5rem; color:rgba(251,248,242,0.9);}
+  .about-copy p{line-height:1.8; opacity:0.82; margin:20px 0;}
+  .why-cards{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem; margin-top:2.2rem;}
+  .why-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:18px; padding:1.6rem 1.3rem;
+    transition:transform 350ms ease, box-shadow 350ms ease;
+  }
+  .why-card:hover{transform:translateY(-6px); box-shadow:var(--shadow);}
+  .why-card i{color:var(--sage-deep); font-size:1.3rem; margin-bottom:0.8rem;}
+  .why-card h3{font-size:1.02rem; font-weight:600; font-family:'Sora',sans-serif;}
+  .why-card p{font-size:0.86rem; opacity:0.7; margin-top:6px; line-height:1.55;}
+  .counters{display:flex; gap:3rem; margin-top:2.6rem; flex-wrap:wrap;}
+  .counter{text-align:left;}
+  .counter .num{font-family:'Fraunces',serif; font-size:2.6rem; color:var(--sage-deep);}
+  .counter .lbl{font-size:0.78rem; opacity:0.65; text-transform:uppercase; letter-spacing:0.08em;}
+  @media(max-width:900px){.about-grid{grid-template-columns:1fr;} .why-cards{grid-template-columns:1fr;}}
+
+  /* ---------- PRODUCTS ---------- */
+  .filter-row{display:flex; gap:0.6rem; margin-bottom:2.6rem; flex-wrap:wrap;}
+  .filter-pill{
+    padding:9px 20px; border-radius:999px; border:1px solid var(--line); font-size:0.82rem; font-weight:500;
+    background:var(--ivory); transition:all 250ms ease;
+  }
+  .filter-pill.active, .filter-pill:hover{background:var(--forest); color:var(--ivory); border-color:var(--forest);}
+  .product-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.8rem;}
+  .p-card{
+    background:var(--ivory); border-radius:22px; overflow:hidden; border:1px solid var(--line);
+    transition:transform 380ms cubic-bezier(.2,.7,.3,1), box-shadow 380ms ease;
+  }
+  .p-card:hover{transform:translateY(-9px) scale(1.015); box-shadow:var(--shadow);}
+  .p-media{
+    aspect-ratio:1/1; background:linear-gradient(160deg,var(--ivory-deep),var(--blush) 130%);
+    display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden;
+  }
+  .p-media i{font-size:3.4rem; color:var(--sage-deep); opacity:0.85; transition:transform 500ms ease;}
+  .p-card:hover .p-media i{transform:scale(1.15) rotate(-4deg);}
+  .p-media img{transition:transform 500ms ease;}
+  .p-card:hover .p-media img{transform:scale(1.08);}
+  .p-tag{
+    position:absolute; top:14px; left:14px; background:var(--forest); color:var(--ivory);
+    font-size:0.68rem; padding:5px 12px; border-radius:999px; letter-spacing:0.04em;
+  }
+  .p-body{padding:1.5rem 1.4rem 1.7rem;}
+  .p-body .stars{color:#D9A441; font-size:0.78rem; margin-bottom:6px;}
+  .p-body h3{font-size:1.08rem; font-weight:600; font-family:'Sora',sans-serif;}
+  .p-body .desc{font-size:0.82rem; opacity:0.65; margin:6px 0 14px;}
+  .p-foot{display:flex; align-items:center; justify-content:space-between;}
+  .price{font-family:'Fraunces',serif; font-size:1.2rem; color:var(--sage-deep);}
+  .p-actions{display:flex; gap:0.5rem; margin-top:14px;}
+  .p-actions button{
+    flex:1; padding:11px 0; border-radius:999px; border:1px solid var(--forest); font-size:0.78rem; font-weight:600;
+    background:transparent; transition:all 250ms ease; position:relative; overflow:hidden;
+  }
+  .p-actions .add{background:var(--forest); color:var(--ivory);}
+  .p-actions .add:hover{box-shadow:0 10px 24px -10px rgba(55,64,47,0.5);}
+  .p-actions .view:hover{background:var(--forest); color:var(--ivory);}
+  @media(max-width:900px){.product-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.product-grid{grid-template-columns:1fr;}}
+
+  /* ---------- BENEFITS ---------- */
+  #benefits{background:var(--forest); color:var(--ivory);}
+  #benefits .eyebrow{color:var(--blush-deep);}
+  #benefits .section-head p{opacity:0.68;}
+  .benefit-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem;}
+  .b-card{
+    background:rgba(251,248,242,0.05); border:1px solid rgba(251,248,242,0.14); border-radius:20px;
+    padding:2rem 1.6rem; transition:all 400ms ease;
+  }
+  .b-card:hover{background:rgba(251,248,242,0.1); transform:translateY(-6px); border-color:rgba(239,215,206,0.5);}
+  .b-card i{font-size:1.6rem; color:var(--blush-deep); margin-bottom:1rem; display:block;}
+  .b-card h3{font-family:'Sora',sans-serif; font-weight:600; font-size:1rem;}
+  .b-card p{font-size:0.85rem; opacity:0.6; margin-top:6px; line-height:1.55;}
+  @media(max-width:900px){.benefit-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:560px){.benefit-grid{grid-template-columns:1fr;}}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .t-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:22px; padding:2.4rem;
+    max-width:640px; margin:0 auto; text-align:center;
+  }
+  .t-card .stars{color:#D9A441; margin-bottom:1.2rem; font-size:0.95rem;}
+  .t-card p.quote{font-family:'Fraunces',serif; font-size:1.3rem; font-style:italic; line-height:1.6; color:var(--forest);}
+  .t-who{display:flex; align-items:center; justify-content:center; gap:12px; margin-top:1.6rem;}
+  .t-avatar{width:44px; height:44px; border-radius:50%; background:linear-gradient(160deg,var(--sage),var(--blush)); display:flex; align-items:center; justify-content:center; font-family:'Fraunces',serif; color:var(--ivory);}
+  .t-name{font-size:0.88rem; font-weight:600;}
+  .t-role{font-size:0.76rem; opacity:0.6;}
+  .swiper-pagination-bullet{background:var(--sage-deep); opacity:0.35;}
+  .swiper-pagination-bullet-active{opacity:1;}
+
+  /* ---------- FAQ ---------- */
+  .faq-item{border-bottom:1px solid var(--line); padding:1.6rem 0;}
+  .faq-q{display:flex; justify-content:space-between; align-items:center; cursor:pointer; gap:1rem;}
+  .faq-q h3{font-size:1.02rem; font-weight:600; font-family:'Sora',sans-serif;}
+  .faq-q i{transition:transform 350ms ease; color:var(--sage-deep);}
+  .faq-item.open .faq-q i{transform:rotate(45deg);}
+  .faq-a{max-height:0; overflow:hidden; transition:max-height 400ms ease;}
+  .faq-a p{padding-top:1rem; opacity:0.7; line-height:1.7; font-size:0.92rem; max-width:640px;}
+
+  /* ---------- CONTACT ---------- */
+  #contact{background:var(--ivory-deep);}
+  .contact-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:4vw;}
+  .c-card{
+    background:var(--ivory); border:1px solid var(--line); border-radius:18px; padding:1.4rem 1.5rem;
+    display:flex; gap:1rem; align-items:flex-start; margin-bottom:1rem; transition:all 300ms ease;
+  }
+  .c-card:hover{box-shadow:var(--shadow); transform:translateY(-3px);}
+  .c-card i{font-size:1.15rem; color:var(--sage-deep); margin-top:3px;}
+  .c-card h3{font-size:0.92rem; font-weight:600;}
+  .c-card p, .c-card a{font-size:0.86rem; opacity:0.72; margin-top:2px;}
+  .map-embed{border-radius:16px; overflow:hidden; margin-top:1.4rem; border:1px solid var(--line);}
+  .map-embed iframe{width:100%; height:220px; border:0; display:block;}
+
+  form.contact-form{background:var(--ivory); border:1px solid var(--line); border-radius:22px; padding:2.2rem;}
+  .f-row{display:grid; grid-template-columns:1fr 1fr; gap:1rem;}
+  .f-group{margin-bottom:1.2rem;}
+  .f-group label{font-size:0.78rem; font-weight:600; text-transform:uppercase; letter-spacing:0.05em; opacity:0.7;}
+  .f-group input, .f-group textarea{
+    width:100%; margin-top:8px; padding:13px 14px; border-radius:12px; border:1px solid var(--line);
+    background:var(--ivory-deep); font-family:'Sora',sans-serif; font-size:0.92rem; color:var(--forest);
+    transition:border-color 250ms ease, box-shadow 250ms ease;
+  }
+  .f-group input:focus, .f-group textarea:focus{
+    outline:none; border-color:var(--sage-deep); box-shadow:0 0 0 3px rgba(143,161,132,0.25);
+  }
+  .f-group.error input, .f-group.error textarea{border-color:#C1594D;}
+  .f-err{font-size:0.74rem; color:#C1594D; margin-top:5px; display:none;}
+  .f-group.error .f-err{display:block;}
+  .submit-btn{width:100%; padding:15px 0; border-radius:999px; border:none; background:var(--forest); color:var(--ivory); font-weight:600; font-size:0.92rem; position:relative; overflow:hidden;}
+  .submit-btn:hover{box-shadow:0 14px 30px -10px rgba(55,64,47,0.5);}
+  .success-msg{
+    display:none; align-items:center; gap:10px; background:rgba(143,161,132,0.18); color:var(--sage-deep);
+    padding:14px 18px; border-radius:12px; font-size:0.86rem; font-weight:600; margin-top:1rem;
+    animation:popin 450ms ease;
+  }
+  @keyframes popin{from{opacity:0; transform:translateY(8px);} to{opacity:1; transform:translateY(0);}}
+  @media(max-width:900px){.contact-grid{grid-template-columns:1fr;} .f-row{grid-template-columns:1fr;}}
+
+  /* ---------- FOOTER ---------- */
+  footer{background:var(--forest); color:var(--ivory); padding:5rem 0 2rem;}
+  .foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:3rem;}
+  .foot-logo{font-family:'Fraunces',serif; font-size:1.5rem;}
+  .foot-desc{font-size:0.86rem; opacity:0.62; margin-top:14px; line-height:1.7; max-width:280px;}
+  .foot-col h4{font-size:0.78rem; letter-spacing:0.1em; text-transform:uppercase; opacity:0.6; margin-bottom:1.1rem;}
+  .foot-col ul li{margin-bottom:0.7rem;}
+  .foot-col a{font-size:0.88rem; opacity:0.82; transition:opacity 250ms ease;}
+  .foot-col a:hover{opacity:1; text-decoration:underline;}
+  .socials{display:flex; gap:0.7rem; margin-top:1.2rem;}
+  .socials a{
+    width:38px; height:38px; border-radius:50%; border:1px solid rgba(251,248,242,0.25);
+    display:flex; align-items:center; justify-content:center; transition:all 300ms ease;
+  }
+  .socials a:hover{background:var(--blush-deep); border-color:var(--blush-deep); color:var(--forest); transform:translateY(-4px) scale(1.08);}
+  .foot-bottom{
+    border-top:1px solid rgba(251,248,242,0.14); margin-top:3.4rem; padding-top:1.6rem;
+    display:flex; justify-content:space-between; font-size:0.78rem; opacity:0.55; flex-wrap:wrap; gap:0.6rem;
+  }
+  @media(max-width:900px){.foot-grid{grid-template-columns:1fr 1fr; gap:2rem 1rem;}}
+
+  /* ---------- FLOATING ---------- */
+  .whatsapp-float{
+    position:fixed; bottom:28px; right:28px; width:58px; height:58px; border-radius:50%;
+    background:#3F4B3A; color:var(--ivory); display:flex; align-items:center; justify-content:center;
+    font-size:1.5rem; z-index:900; box-shadow:0 14px 28px -8px rgba(55,64,47,0.5);
+    transition:transform 300ms ease;
+  }
+  .whatsapp-float:hover{transform:scale(1.1);}
+  .whatsapp-float::before{
+    content:''; position:absolute; inset:0; border-radius:50%; background:#3F4B3A; opacity:0.5;
+    animation:pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{0%{transform:scale(1); opacity:0.5;} 100%{transform:scale(1.7); opacity:0;}}
+
+  .back-top{
+    position:fixed; bottom:28px; right:96px; width:44px; height:44px; border-radius:50%;
+    background:var(--ivory); border:1px solid var(--line); display:flex; align-items:center; justify-content:center;
+    z-index:900; opacity:0; pointer-events:none; transition:all 350ms ease; box-shadow:var(--shadow);
+  }
+  .back-top.show{opacity:1; pointer-events:auto;}
+  .back-top:hover{background:var(--forest); color:var(--ivory);}
+
+  @media(max-width:560px){
+    section{padding:5.5rem 0;}
+    .whatsapp-float{width:52px; height:52px; right:18px; bottom:18px;}
+    .back-top{right:80px; bottom:18px;}
+  }
+
+  ::-webkit-scrollbar{width:10px;}
+  ::-webkit-scrollbar-track{background:var(--ivory);}
+  ::-webkit-scrollbar-thumb{background:var(--sage); border-radius:10px;}
+</style>
+</head>
+<body>
+
+<!-- ================= HEADER ================= -->
+<header id="siteHeader">
+  <div class="wrap">
+    <nav>
+      <a href="#home" class="logo"><span class="dot"></span>Verdora</a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#products">Products</a></li>
+        <li><a href="#benefits">Benefits</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="#products" class="nav-cta">Shop Now</a></li>
+      </ul>
+      <button class="burger" id="burgerBtn" aria-label="Toggle menu"><i class="fa-solid fa-bars"></i></button>
+    </nav>
+  </div>
+</header>
+
+<!-- ================= HERO ================= -->
+<section class="hero" id="home">
+  <div class="wrap hero-grid">
+    <div data-aos="fade-up">
+      <span class="eyebrow">Slow-made botanical skincare</span>
+      <h1>Skincare that gives your skin <em>time</em> to listen.</h1>
+      <p class="lead">Verdora blends cold-pressed botanicals with dermatologist-backed formulas — built for a five-minute ritual, not a ten-step routine.</p>
+      <div class="btn-row">
+        <button class="btn btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">Shop Now <i class="fa-solid fa-arrow-right"></i></button>
+        <button class="btn btn-outline" onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">Learn More</button>
+      </div>
+    </div>
+    <div class="hero-visual" data-aos="fade-left" data-aos-delay="150">
+      <div class="hero-blob"></div>
+      <img class="hero-bottle" src="https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=900&auto=format&fit=crop" alt="Verdora skincare tube product shot" style="border-radius:20px; box-shadow:0 30px 60px -20px rgba(55,64,47,0.4);">
+      <span class="drip" style="left:47%; animation-delay:0s;"></span>
+      <span class="drip" style="left:53%; animation-delay:1.1s;"></span>
+      <span class="drip" style="left:50%; animation-delay:2.2s;"></span>
+    </div>
+  </div>
+  <div class="scroll-cue"><span>Scroll</span><span class="line"></span></div>
+</section>
+
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="about-frame" data-aos="fade-right">
+      <img src="https://images.unsplash.com/photo-1567721913486-6585f069b332?q=80&w=900&auto=format&fit=crop" alt="Verdora botanical skincare set" style="width:100%; height:100%; object-fit:cover;">
+    </div>
+    <div class="about-copy" data-aos="fade-left">
+      <span class="eyebrow">Our story</span>
+      <h2>Started in a kitchen, grown by a promise.</h2>
+      <p>Verdora began in 2018 when our founder started hand-mixing botanical oils on a kitchen counter, frustrated by skincare aisles full of synthetic filler. Every formula since has followed the same rule: fewer ingredients, each one earning its place.</p>
+      <p><strong>Our mission</strong> is to make plant-powered skincare that performs like a clinical product and feels like a ritual — accessible, honest, and kind to your skin barrier.</p>
+
+      <div class="why-cards">
+        <div class="why-card" data-aos="fade-up" data-aos-delay="0">
+          <i class="fa-solid fa-leaf"></i>
+          <h3>Plant-first formulas</h3>
+          <p>90%+ naturally derived actives in every bottle.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="100">
+          <i class="fa-solid fa-flask-vial"></i>
+          <h3>Lab-verified</h3>
+          <p>Dermatologist tested across all skin tones.</p>
+        </div>
+        <div class="why-card" data-aos="fade-up" data-aos-delay="200">
+          <i class="fa-solid fa-recycle"></i>
+          <h3>Low-impact packaging</h3>
+          <p>Refillable glass, recycled cartons.</p>
+        </div>
+      </div>
+
+      <div class="counters">
+        <div class="counter"><div class="num" data-target="48000">0</div><div class="lbl">Happy skins</div></div>
+        <div class="counter"><div class="num" data-target="6">0</div><div class="lbl">Years slow-making</div></div>
+        <div class="counter"><div class="num" data-target="97">0</div><div class="lbl">% would repurchase</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PRODUCTS ================= -->
+<section id="products">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">The ritual, bottled</span>
+      <h2>Products made to be finished, not shelved.</h2>
+      <p>Six formulas, one philosophy: gentle enough for daily use, active enough to see change within weeks.</p>
+    </div>
+
+    <div class="filter-row" data-aos="fade-up">
+      <button class="filter-pill active">All</button>
+      <button class="filter-pill">Cleanse</button>
+      <button class="filter-pill">Hydrate</button>
+      <button class="filter-pill">Treat</button>
+    </div>
+
+    <div class="product-grid">
+      <!-- Product 1 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="p-media"><span class="p-tag">Bestseller</span><img src="https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?q=80&w=700&auto=format&fit=crop" alt="Cloudmilk Cleanser bottle" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★★ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(482)</span></div>
+          <h3>Cloudmilk Cleanser</h3>
+          <p class="desc">Oat-milk gel cleanser, barrier-safe.</p>
+          <div class="p-foot"><span class="price">$28</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 2 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="p-media"><img src="https://images.unsplash.com/photo-1686831451322-8d8e234a51e1?q=80&w=700&auto=format&fit=crop" alt="Dew Essence Toner tube" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★★ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(316)</span></div>
+          <h3>Dew Essence Toner</h3>
+          <p class="desc">Hyaluronic + centella hydration layer.</p>
+          <div class="p-foot"><span class="price">$32</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 3 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="p-media"><span class="p-tag">New</span><img src="https://images.unsplash.com/photo-1638609927040-8a7e97cd9d6a?q=80&w=700&auto=format&fit=crop" alt="Velvet Barrier Cream tube" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★☆ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(129)</span></div>
+          <h3>Velvet Barrier Cream</h3>
+          <p class="desc">Ceramide-rich daily moisturizer.</p>
+          <div class="p-foot"><span class="price">$44</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 4 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="0">
+        <div class="p-media"><img src="https://images.unsplash.com/photo-1612817288484-6f916006741a?q=80&w=700&auto=format&fit=crop" alt="Hibiscus Glow Serum bottle" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★★ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(601)</span></div>
+          <h3>Hibiscus Glow Serum</h3>
+          <p class="desc">Vitamin-C forward brightening serum.</p>
+          <div class="p-foot"><span class="price">$52</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 5 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="80">
+        <div class="p-media"><img src="https://images.unsplash.com/photo-1616750819456-5cdee9b85d22?q=80&w=700&auto=format&fit=crop" alt="Overnight Repair Balm tube" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★★ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(244)</span></div>
+          <h3>Overnight Repair Balm</h3>
+          <p class="desc">Peptide + squalane sleep mask.</p>
+          <div class="p-foot"><span class="price">$46</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+      <!-- Product 6 -->
+      <div class="p-card" data-aos="fade-up" data-aos-delay="160">
+        <div class="p-media"><img src="https://images.unsplash.com/photo-1576426863848-c21f53c60b19?q=80&w=700&auto=format&fit=crop" alt="Rose Quartz Roller and dropper bottle" style="width:100%; height:100%; object-fit:cover;"></div>
+        <div class="p-body">
+          <div class="stars">★★★★☆ <span style="color:var(--forest); opacity:0.5; font-size:0.72rem;">(88)</span></div>
+          <h3>Rose Quartz Roller</h3>
+          <p class="desc">Cooling facial massage tool.</p>
+          <div class="p-foot"><span class="price">$24</span></div>
+          <div class="p-actions">
+            <button class="view">View Details</button>
+            <button class="add">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= BENEFITS ================= -->
+<section id="benefits">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Why skin responds</span>
+      <h2>Every formula answers to six standards.</h2>
+    </div>
+    <div class="benefit-grid">
+      <div class="b-card" data-aos="fade-up" data-aos-delay="0"><i class="fa-solid fa-leaf"></i><h3>Natural Ingredients</h3><p>Cold-pressed botanicals lead every formula sheet.</p></div>
+      <div class="b-card" data-aos="fade-up" data-aos-delay="60"><i class="fa-solid fa-droplet"></i><h3>Deep Hydration</h3><p>Multi-weight hyaluronic acid, layered for lasting dew.</p></div>
+      <div class="b-card" data-aos="fade-up" data-aos-delay="120"><i class="fa-solid fa-user-doctor"></i><h3>Dermatologist Tested</h3><p>Clinically patch-tested across skin tones and types.</p></div>
+      <div class="b-card" data-aos="fade-up" data-aos-delay="180"><i class="fa-solid fa-recycle"></i><h3>Eco Friendly</h3><p>Refillable glass and FSC-certified cartons throughout.</p></div>
+      <div class="b-card" data-aos="fade-up" data-aos-delay="240"><i class="fa-solid fa-shield-heart"></i><h3>Sensitive-Skin Safe</h3><p>Fragrance-optional, free from known irritant lists.</p></div>
+      <div class="b-card" data-aos="fade-up" data-aos-delay="300"><i class="fa-solid fa-sparkles"></i><h3>Visible Glow</h3><p>Clinical trials show radiance improving in 14 days.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= TESTIMONIALS ================= -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="section-head center" data-aos="fade-up">
+      <span class="eyebrow">From the community</span>
+      <h2>Skin stories, not scripts.</h2>
+    </div>
+    <div class="swiper testiSwiper" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <div class="t-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"My redness calmed down within two weeks of the Velvet Barrier Cream. It's the first cream that hasn't broken me out."</p>
+            <div class="t-who"><div class="t-avatar">A</div><div><div class="t-name">Amara O.</div><div class="t-role">Verified buyer</div></div></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="t-card">
+            <div class="stars">★★★★★</div>
+            <p class="quote">"The Cloudmilk Cleanser is the only thing that's ever calmed my eczema-prone skin without stripping it."</p>
+            <div class="t-who"><div class="t-avatar">R</div><div><div class="t-name">Riya K.</div><div class="t-role">Verified buyer</div></div></div>
+          </div>
+        </div>
+        <div class="swiper-slide">
+          <div class="t-card">
+            <div class="stars">★★★★☆</div>
+            <p class="quote">"Hibiscus Glow Serum genuinely brightened my tone. Smells incredible too — like actual hibiscus, not perfume."</p>
+            <div class="t-who"><div class="t-avatar">M</div><div><div class="t-name">Mei L.</div><div class="t-role">Verified buyer</div></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-pagination" style="position:static; margin-top:2rem;"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section id="faq">
+  <div class="wrap" style="max-width:800px;">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Good to know</span>
+      <h2>Frequently asked questions.</h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q"><h3>Are Verdora products suitable for sensitive skin?</h3><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Yes — every formula is dermatologist patch-tested, and our Cloudmilk and Velvet lines are fragrance-optional for reactive skin types.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q"><h3>How long until I see results?</h3><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Most customers notice improved hydration within a week, and visible tone or texture change by the 14-day mark with consistent use.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q"><h3>Do you ship internationally?</h3><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>We currently ship across the US, Canada, the UK, and the EU, with more regions opening quarterly.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q"><h3>What's your return policy?</h3><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Unopened products can be returned within 30 days. Opened products are covered under our patch-test satisfaction guarantee for 14 days.</p></div>
+      </div>
+      <div class="faq-item" data-aos="fade-up">
+        <div class="faq-q"><h3>Is the packaging really recyclable?</h3><i class="fa-solid fa-plus"></i></div>
+        <div class="faq-a"><p>Yes — bottles are refillable glass, and outer cartons are FSC-certified and fully curbside recyclable.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head" data-aos="fade-up">
+      <span class="eyebrow">Reach us</span>
+      <h2>We reply within one working day.</h2>
+    </div>
+    <div class="contact-grid">
+      <div data-aos="fade-right">
+        <div class="c-card">
+          <i class="fa-solid fa-location-dot"></i>
+          <div><h3>Studio & Office</h3><p>14 Linden Court, Portland, OR 97201</p></div>
+        </div>
+        <div class="c-card">
+          <i class="fa-solid fa-phone"></i>
+          <div><h3>Call Us</h3><a href="tel:+919876543210">+91 98765 43210</a></div>
+        </div>
+        <div class="c-card">
+          <i class="fa-solid fa-envelope"></i>
+          <div><h3>Email</h3><a href="mailto:info@verdorabotanicals.com">info@verdorabotanicals.com</a></div>
+        </div>
+        <div class="c-card">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div><h3>WhatsApp</h3><a href="https://wa.me/919876543210?text=Hi%20I%20want%20to%20know%20about%20your%20products" target="_blank" rel="noopener">Chat with us</a></div>
+        </div>
+        <div class="map-embed">
+          <iframe loading="lazy" src="https://maps.google.com/maps?q=Portland%2C%20OR&t=&z=13&ie=UTF8&iwloc=&output=embed" allowfullscreen></iframe>
+        </div>
+        <button class="btn btn-outline" style="margin-top:1rem; width:100%; justify-content:center;" onclick="window.open('https://maps.google.com/?q=Portland,OR','_blank')">Get Directions <i class="fa-solid fa-arrow-up-right-from-square"></i></button>
+      </div>
+
+      <div data-aos="fade-left">
+        <form class="contact-form" id="contactForm" novalidate>
+          <div class="f-row">
+            <div class="f-group" id="grp-name">
+              <label for="fname">Full Name</label>
+              <input type="text" id="fname" placeholder="Jane Doe">
+              <div class="f-err">Please enter your name.</div>
+            </div>
+            <div class="f-group" id="grp-email">
+              <label for="femail">Email</label>
+              <input type="email" id="femail" placeholder="jane@email.com">
+              <div class="f-err">Please enter a valid email.</div>
+            </div>
+          </div>
+          <div class="f-row">
+            <div class="f-group" id="grp-phone">
+              <label for="fphone">Phone Number</label>
+              <input type="tel" id="fphone" placeholder="+1 234 567 8900">
+              <div class="f-err">Please enter a valid phone number.</div>
+            </div>
+            <div class="f-group" id="grp-subject">
+              <label for="fsubject">Subject</label>
+              <input type="text" id="fsubject" placeholder="Order question">
+              <div class="f-err">Please add a subject.</div>
+            </div>
+          </div>
+          <div class="f-group" id="grp-message">
+            <label for="fmessage">Message</label>
+            <textarea id="fmessage" rows="4" placeholder="Tell us how we can help..."></textarea>
+            <div class="f-err">Please write a short message.</div>
+          </div>
+          <button type="submit" class="submit-btn">Send Message</button>
+          <div class="success-msg" id="successMsg"><i class="fa-solid fa-circle-check"></i> Message sent — we'll be in touch shortly.</div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">Verdora</div>
+        <p class="foot-desc">Slow-made botanical skincare, formulated for quiet rituals and visible results.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+          <a href="https://wa.me/919876543210" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+        </div>
+      </div>
+      <div class="foot-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#benefits">Benefits</a></li>
+          <li><a href="#faq">FAQ</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Products</h4>
+        <ul>
+          <li><a href="#products">Cloudmilk Cleanser</a></li>
+          <li><a href="#products">Dew Essence Toner</a></li>
+          <li><a href="#products">Velvet Barrier Cream</a></li>
+          <li><a href="#products">Hibiscus Glow Serum</a></li>
+        </ul>
+      </div>
+      <div class="foot-col">
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li><a href="mailto:info@verdorabotanicals.com">info@verdorabotanicals.com</a></li>
+          <li><a href="#contact">Portland, OR</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 Verdora Botanicals. All rights reserved.</span>
+      <span>Privacy Policy · Terms of Service</span>
+    </div>
+  </div>
+</footer>
+
+<!-- Floating buttons -->
+<a class="whatsapp-float" href="https://wa.me/919876543210?text=Hi%20I%20want%20to%20know%20about%20your%20products" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+<button class="back-top" id="backTop" aria-label="Back to top"><i class="fa-solid fa-arrow-up"></i></button>
+
+<!-- Scripts -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+<script>
+  AOS.init({ duration: 650, easing: 'ease-in-out', once: true, offset: 60 });
+
+  // Header scroll state
+  const header = document.getElementById('siteHeader');
+  const backTop = document.getElementById('backTop');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 40);
+    backTop.classList.toggle('show', window.scrollY > 600);
+  });
+  backTop.addEventListener('click', () => window.scrollTo({top:0, behavior:'smooth'}));
+
+  // Mobile nav
+  const burger = document.getElementById('burgerBtn');
+  const navLinks = document.getElementById('navLinks');
+  burger.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+    burger.innerHTML = navLinks.classList.contains('open') ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    burger.innerHTML = '<i class="fa-solid fa-bars"></i>';
+  }));
+
+  // Button ripple
+  document.querySelectorAll('.btn, .p-actions button, .submit-btn').forEach(btn => {
+    btn.addEventListener('click', function(e){
+      const rect = this.getBoundingClientRect();
+      const ripple = document.createElement('span');
+      ripple.className = 'ripple';
+      ripple.style.left = (e.clientX - rect.left) + 'px';
+      ripple.style.top = (e.clientY - rect.top) + 'px';
+      ripple.style.width = ripple.style.height = Math.max(rect.width, rect.height) + 'px';
+      this.style.position = 'relative';
+      this.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 650);
+    });
+  });
+
+  // Product filter pills (visual only demo)
+  document.querySelectorAll('.filter-pill').forEach(p => {
+    p.addEventListener('click', () => {
+      document.querySelectorAll('.filter-pill').forEach(x => x.classList.remove('active'));
+      p.classList.add('active');
+    });
+  });
+
+  // Counter animation on scroll
+  const counters = document.querySelectorAll('.counter .num');
+  const counterObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = +el.dataset.target;
+        let cur = 0;
+        const step = Math.max(1, Math.ceil(target / 90));
+        const tick = () => {
+          cur += step;
+          if (cur >= target) { el.textContent = target.toLocaleString(); }
+          else { el.textContent = cur.toLocaleString(); requestAnimationFrame(tick); }
+        };
+        tick();
+        counterObserver.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => counterObserver.observe(c));
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item => {
+    const q = item.querySelector('.faq-q');
+    const a = item.querySelector('.faq-a');
+    q.addEventListener('click', () => {
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => { i.classList.remove('open'); i.querySelector('.faq-a').style.maxHeight = null; });
+      if (!isOpen) { item.classList.add('open'); a.style.maxHeight = a.scrollHeight + 'px'; }
+    });
+  });
+
+  // Testimonials swiper
+  new Swiper('.testiSwiper', {
+    loop: true,
+    autoplay: { delay: 4200, disableOnInteraction: false },
+    speed: 700,
+    pagination: { el: '.swiper-pagination', clickable: true },
+  });
+
+  // Contact form validation
+  const form = document.getElementById('contactForm');
+  const successMsg = document.getElementById('successMsg');
+  const validators = {
+    fname: v => v.trim().length > 1,
+    femail: v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()),
+    fphone: v => /^[+\d][\d\s-]{7,}$/.test(v.trim()),
+    fsubject: v => v.trim().length > 2,
+    fmessage: v => v.trim().length > 8,
+  };
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    let valid = true;
+    Object.keys(validators).forEach(id => {
+      const input = document.getElementById(id);
+      const group = input.closest('.f-group');
+      if (!validators[id](input.value)) { group.classList.add('error'); valid = false; }
+      else { group.classList.remove('error'); }
+    });
+    if (valid) {
+      successMsg.style.display = 'flex';
+      form.reset();
+      setTimeout(() => { successMsg.style.display = 'none'; }, 5000);
+    } else {
+      successMsg.style.display = 'none';
+    }
+  });
+  Object.keys(validators).forEach(id => {
+    document.getElementById(id).addEventListener('input', function(){
+      const group = this.closest('.f-group');
+      if (validators[id](this.value)) group.classList.remove('error');
+    });
+  });
+</script>
+</body>
+</html>
